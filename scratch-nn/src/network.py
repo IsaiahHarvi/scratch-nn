@@ -4,7 +4,7 @@ from activation_functions import RelU, SoftMax
 
 
 class NeuralNetwork:
-    def __init__(self, in_features: int, hidden_layers: list, out_features: int):
+    def __init__(self, in_features: int, hidden_layers: list[int], out_features: int) -> None:
         self.in_features = in_features
         self.out_features = out_features
         self.hidden_layers = hidden_layers
@@ -13,19 +13,20 @@ class NeuralNetwork:
 
         self._create_layers()
 
-    def predict(self, x):
+    def predict(self, x) -> tuple[np.ndarray, list[np.ndarray]]:
         return self._forward(x)
 
-    def _forward(self, x):
+    def _forward(self, x) -> tuple[np.ndarray, list[np.ndarray]]:
         layers = [x]
-        for i in range(len(self.weights) - 1):  # exclude output layer
+        for i in range(len(self.weights) - 1):   # exclude output layer
             layers.append(
                 RelU(np.dot(layers[i], self.weights[i]) + self.biases[i])
             )
-        return SoftMax(np.dot(layers[-1], self.weights[-1]) + self.biases[-1]) # softmax output
+        return SoftMax(np.dot(layers[-1], self.weights[-1]) + self.biases[-1]), layers
     
-    def _create_layers(self):
+    def _create_layers(self) -> None:
         def he_init(size): # huge improvement over a random init
+            """ https://arxiv.org/pdf/1502.01852v1 """
             return np.random.randn(*size) * np.sqrt(2 / size[0])
 
         # Input Layer
@@ -41,48 +42,42 @@ class NeuralNetwork:
         self.weights.append(he_init((self.hidden_layers[-1], self.out_features)))
         self.biases.append(np.zeros((1, self.out_features)))
 
-    def _cross_entropy(self, y, y_pred):
+    def _cross_entropy(self, y, y_pred) -> float:
         eps = 1e-10 # prevent log(0)
         y_pred = np.clip(y_pred, eps, 1. - eps)
         probabilities = y_pred[range(y.shape[0]), y]
-        return np.sum(-np.log(probabilities)) / y.shape[0] # loss
+        return np.sum(-np.log(probabilities)) / y.shape[0]
     
-    def _backpropogation(self, x, y, lr):
-        layers = [x]
-        # forward pass
-        for i in range(len(self.weights) - 1): # exclude output layer
-            layers.append(
-                RelU(np.dot(layers[i], self.weights[i]) + self.biases[i])
-            )
-        y_pred = SoftMax(np.dot(layers[-1], self.weights[-1]) + self.biases[-1])
-        loss = self._cross_entropy(y, y_pred)
+    def _backpropogation(self, x, y, lr) -> float:
+        y_pred, layers = self._forward(x)
+        loss = self._cross_entropy(y, y_pred) 
 
         grad = {}
         d_output = y_pred # gradient of loss wrt output layer
         d_output[range(x.shape[0]), y] -= 1 # error term
         d_output /= x.shape[0]
 
-        grad['weights' + str(len(self.weights) - 1)] = np.dot(layers[-1].T, d_output)
-        grad['biases' + str(len(self.biases) - 1)] = np.sum(d_output, axis=0, keepdims=True)
+        grad['w' + str(len(self.weights) - 1)] = np.dot(layers[-1].T, d_output)
+        grad['b' + str(len(self.biases) - 1)] = np.sum(d_output, axis=0, keepdims=True)
         
         # calculate gradients wrt hidden layers
         for i in range(len(self.weights)-2, -1, -1):
             d_hidden = np.dot(d_output, self.weights[i + 1].T)
             d_hidden[layers[i + 1] <= 0] = 0  # derivative of ReLU
 
-            grad['weights' + str(i)] = np.dot(layers[i].T, d_hidden)
-            grad['biases' + str(i)] = np.sum(d_hidden, axis=0, keepdims=True)
+            grad['w' + str(i)] = np.dot(layers[i].T, d_hidden)
+            grad['b' + str(i)] = np.sum(d_hidden, axis=0, keepdims=True)
 
             d_output = d_hidden
 
         # update weights and biases 
         for i in range(len(self.weights)):
-            self.weights[i] -= lr * grad['weights' + str(i)]
-            self.biases[i] -= lr * grad['biases' + str(i)]
+            self.weights[i] -= lr * grad['w' + str(i)]
+            self.biases[i] -= lr * grad['b' + str(i)]
 
         return loss
 
-    def train(self, x, y, epochs=100, lr=0.01):
+    def train(self, x, y, epochs=100, lr=0.01) -> list[float]:
         losses = []
         for i in range(epochs):
             loss = self._backpropogation(x, y, lr)

@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import click
-from datetime import datetime
 from torchvision.datasets import MNIST
 from torchvision import transforms
 from torch.utils.data import DataLoader
@@ -37,15 +36,15 @@ def train(epochs, lr):
 
     x_train, y_train = [], []
     for x, y in train_loader:
-        x_train.append(x.view(-1, 28*28).numpy())
-        y_train.append(y.numpy())
+        x_train.extend(x.view(-1, 28*28).numpy())
+        y_train.extend(y.numpy())
 
-    x_train = np.concatenate(x_train)
-    y_train = np.concatenate(y_train)
+    x_train = np.array(x_train)
+    y_train = np.array(y_train)
 
-    losses = model.train(x_train, y_train, epochs, lr) 
+    losses = model.train(x_train, y_train, epochs, lr)
 
-    train_preds = model.predict(x_train)
+    train_preds, _ = model.predict(x_train)
     train_pred_cls = np.argmax(train_preds, axis=1)
 
     plt.figure(figsize=(10, 5))
@@ -63,11 +62,8 @@ def train(epochs, lr):
     x_val = np.array(x_val)
     y_val = np.array(y_val)
 
-    preds = model.predict(x_val)
+    preds, _ = model.predict(x_val)
     pred_cls = np.argmax(preds, axis=1)
-
-    # Calculate accuracy
-    accuracy = accuracy_score(y_val, pred_cls)
     
     # true vs predicted labels for a subset of validation data
     for y, cls, name in [(y_val, pred_cls, "Val"), (y_train, train_pred_cls, "Train")]:
@@ -85,16 +81,8 @@ def train(epochs, lr):
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=range(10))    
     plt.figure(figsize=(10, 10))
     disp.plot(cmap=plt.cm.Blues, values_format='d')
-    plt.title(f'Confusion Matrix (Accuracy: {accuracy * 100:.2f}%)')
+    plt.title(f'Confusion Matrix (Accuracy: {accuracy_score(y_val, pred_cls) * 100:.2f}%)')
     plt.savefig("figs/ConfusionMatrix.png")
-
-    # _print_failed_preds(y_val, pred_cls)
-
-def _print_failed_preds(y_val, pred_cls):
-    misclassified_idx = np.where(y_val != pred_cls)[0]
-    print(f"Number of misclassified examples: {len(misclassified_idx)}/{len(y_val)}")
-    for idx in misclassified_idx:
-        print(f"Input: {y_val[idx]}, Pred: {pred_cls[idx]}")
 
 if __name__ == '__main__':
     train()
