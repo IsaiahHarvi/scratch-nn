@@ -4,8 +4,16 @@
 This project implements a neural network from scratch using only NumPy to classify MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
 
 ## Best Result
-![ConfusionMatrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
+Given 50 epochs and a learning rate of 0.1.
+More figures are available under [scratch-nn/figs](scratch-nn/figs).
 
+
+![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
+Located at [scratch-nn/figs/best/ConfusionMatrix.png](scratch-nn/figs/best/ConfusionMatrix.png).
+
+---
+
+This version ensures the text is concise, the link to the `figs` directory is clear, and the image and its link are well-formatted. Adjust the links as necessary to match the actual paths in your repository.
 
 ## Network Architecture
 
