@@ -9,11 +9,8 @@ More figures are available under [scratch-nn/figs](scratch-nn/figs).
 
 
 ![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
-Located at [scratch-nn/figs/best/ConfusionMatrix.png](scratch-nn/figs/best/ConfusionMatrix.png).
 
 ---
-
-This version ensures the text is concise, the link to the `figs` directory is clear, and the image and its link are well-formatted. Adjust the links as necessary to match the actual paths in your repository.
 
 ## Network Architecture
 
