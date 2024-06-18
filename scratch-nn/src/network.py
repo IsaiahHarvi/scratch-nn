@@ -1,5 +1,4 @@
 import numpy as np
-from neuron import Neuron
 from activation_functions import RelU, SoftMax
 
 
