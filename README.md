@@ -1,2 +1,2 @@
 # scratch-nn
-Neural Network without any ML Libraries
+Multi-Layer Perceptron made from scratch, without the use of any ML Libraries.
