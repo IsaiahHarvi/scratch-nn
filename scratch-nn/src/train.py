@@ -24,8 +24,8 @@ def _load_data():
     return train_loader, val_loader
 
 @click.command()
-@click.option('--epochs', default=100, help='Number of epochs to train the model')
-@click.option('--lr', default=0.01, help='Learning rate for the optimizer')
+@click.option('--epochs', default=100)
+@click.option('--lr', default=0.01)
 def train(epochs, lr):
     train_loader, val_loader = _load_data()
 
@@ -53,7 +53,7 @@ def train(epochs, lr):
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.title(f'{epochs = }, {lr = }')
-    plt.savefig(f"figs/best/Loss.png")
+    plt.savefig(f"figs/Loss.png")
 
     x_val, y_val = [], []
     for x, y in val_loader:
@@ -78,7 +78,7 @@ def train(epochs, lr):
         plt.ylabel('Class')
         plt.title(f'True vs Predicted Labels ({name})')
         plt.legend()
-        plt.savefig(f"figs/best/Preds_{name}.png")
+        plt.savefig(f"figs/Preds_{name}.png")
 
     # confusion matrix
     cm = confusion_matrix(y_val, pred_cls)
@@ -86,7 +86,15 @@ def train(epochs, lr):
     plt.figure(figsize=(10, 10))
     disp.plot(cmap=plt.cm.Blues, values_format='d')
     plt.title(f'Confusion Matrix (Accuracy: {accuracy * 100:.2f}%)')
-    plt.savefig("figs/best/ConfusionMatrix.png")
+    plt.savefig("figs/ConfusionMatrix.png")
+
+    # _print_failed_preds(y_val, pred_cls)
+
+def _print_failed_preds(y_val, pred_cls):
+    misclassified_idx = np.where(y_val != pred_cls)[0]
+    print(f"Number of misclassified examples: {len(misclassified_idx)}/{len(y_val)}")
+    for idx in misclassified_idx:
+        print(f"Input: {y_val[idx]}, Pred: {pred_cls[idx]}")
 
 if __name__ == '__main__':
     train()

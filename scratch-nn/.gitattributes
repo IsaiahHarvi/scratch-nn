@@ -1,2 +1,11 @@
 figs filter=lfs diff=lfs merge=lfs -text
 data filter=lfs diff=lfs merge=lfs -text
+figs/best/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
+figs/best/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/random-init/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
+figs/random-init/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/random-init/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
+figs/random-init/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/best/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
+figs/best/Loss.png filter=lfs diff=lfs merge=lfs -text
+data/MNIST/raw filter=lfs diff=lfs merge=lfs -text
