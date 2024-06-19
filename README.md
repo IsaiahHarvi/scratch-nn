@@ -33,9 +33,10 @@ The neural network consists of the following layers:
 - **Cross-Entropy Loss**: Used to measure the performance of the classification model, providing a probability value between 0 and 1.
 
 ## Used Libraries
+The only library utilized in the construction of the model is Numpy. The other libraries are used for training and plotting.
 - `numpy`
 - `matplotlib`
-- `click`
-- `torchvision`  (for MNIST dataset)
+- `click` (for command line arguments in `train.py`)
+- `torchvision`  (for downloading the MNIST dataset)
 - `torch`  (for data loaders in `train.py`)
-- `scikit-learn` (for confusion matrix)
+- `scikit-learn` (for confusion matrix plot)
