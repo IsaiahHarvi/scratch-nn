@@ -1,17 +1,17 @@
-
 # Neural Network from Scratch (scratch-nn)
 
-This project implements a neural network from scratch using only NumPy to classify MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
+This project implements a neural network from scratch using only NumPy to classify the MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
 
 ## Best Result
-Given 50 epochs and a learning rate of 0.1.
-More figures are available under [scratch-nn/figs](scratch-nn/figs).
+Given 50 epochs and a learning rate of 0.1. More figures are available under [scratch-nn/figs](scratch-nn/figs).
 
-
+### Confusion Matrix
 ![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
 
-Loss plot when given 100 epochs and a 0.05 learning rate.
+### Loss Plot GIF
 ![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/training_loss.gif)
+*The GIF above shows the training loss over 100 epochs.*
+
 ---
 
 ## Network Architecture
@@ -31,14 +31,17 @@ The neural network consists of the following layers:
 ### Training Details
 
 - **Backpropagation**: The network uses backpropagation to adjust weights and biases based on the error between predicted and actual labels.
-- **Loss Function**:
-- **Cross-Entropy Loss**: Used to measure the performance of the classification model, providing a probability value between 0 and 1.
+- **Loss Function**: Cross-Entropy Loss is used to measure the performance of the classification model, providing a probability value between 0 and 1.
+
+---
 
 ## Used Libraries
-The only library utilized in the construction of the model is Numpy. The other libraries are used for training and plotting.
+
+The only library utilized in the construction of the model is NumPy. Other libraries are used for training and plotting:
 - `numpy`
 - `matplotlib`
 - `click` (for command line arguments in `train.py`)
-- `torchvision`  (for downloading the MNIST dataset)
-- `torch`  (for data loaders in `train.py`)
+- `torchvision` (for downloading the MNIST dataset)
+- `torch` (for data loaders in `train.py`)
 - `scikit-learn` (for confusion matrix plot)
+
