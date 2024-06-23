@@ -10,6 +10,7 @@ More figures are available under [scratch-nn/figs](scratch-nn/figs).
 
 ![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
 
+![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/training_loss.gif)
 ---
 
 ## Network Architecture
