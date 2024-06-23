@@ -10,6 +10,7 @@ Given 50 epochs and a learning rate of 0.1. More figures are available under [sc
 
 ### Loss Plot GIF
 ![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/training_loss.gif)
+
 *The GIF above shows the training loss over 100 epochs.*
 
 ---
