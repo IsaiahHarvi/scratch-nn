@@ -1,6 +1,6 @@
 import numpy as np
 from activation_functions import RelU, SoftMax
-
+from plot_utils import plot_losses_live
 
 class NeuralNetwork:
     def __init__(self, in_features: int, hidden_layers: list[int], out_features: int) -> None:
@@ -76,11 +76,12 @@ class NeuralNetwork:
 
         return loss
 
-    def train(self, x, y, epochs=100, lr=0.01) -> list[float]:
+    def train(self, x, y, epochs, lr) -> list[float]:
         losses = []
         for i in range(epochs):
             loss = self._backpropogation(x, y, lr)
             losses.append(loss)
             print(f'Epoch {i+1}/{epochs} - Loss: {loss}')
 
+        plot_losses_live(losses)
         return losses
