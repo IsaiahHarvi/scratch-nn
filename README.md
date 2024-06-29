@@ -3,7 +3,7 @@
 This project implements a neural network from scratch using only NumPy to classify the MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
 
 ## Best Result
-The 4-layer MLP, given 50 epochs and a learning rate of 0.1. These figures are available under [scratch-nn/figs](scratch-nn/figs/4_layers/).
+The 4-layer MLP, given 50 epochs and a learning rate of 0.1. These figures are available under [figs](scratch-nn/figs/4_layers/).
 
 ### Confusion Matrix
 ![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/best_50e/ConfusionMatrix.png)
