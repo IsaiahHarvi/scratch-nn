@@ -5,7 +5,7 @@ from torchvision.datasets import MNIST
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from plot_utils import plot_losses, plot_predictions, plot_confusion_matrix
-from network import NeuralNetwork
+from MLP import MLP
 
 def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     transform = transforms.Compose([
@@ -43,7 +43,7 @@ def load_data() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
 def train(epochs, lr):
     x_train, y_train, x_val, y_val = load_data()
 
-    model = NeuralNetwork( # v1
+    model = MLP( # v1
         in_features=28*28,
         hidden_layers=[128, 64],
         out_features=10
@@ -55,7 +55,7 @@ def train(epochs, lr):
     #     out_features=10
     # )
 
-    dir_ = f"figs/{model.id}_layers/best_{epochs}e"
+    dir_ = f"figs/{model.name}_{model.n_l}_layers/best_{epochs}e"
     os.makedirs(dir_, exist_ok=True)
 
     losses = model.train(x_train, y_train, epochs, lr)

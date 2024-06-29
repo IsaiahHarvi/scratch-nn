@@ -8,7 +8,7 @@ class NeuralNetwork:
         self.hidden_layers = hidden_layers
         self.weights = []
         self.biases = []
-        self.id = (len(hidden_layers) + 2)
+        self.n_l = (len(hidden_layers) + 2)
         self._create_layers()
 
     def predict(self, x) -> tuple[np.ndarray, list[np.ndarray]]:
