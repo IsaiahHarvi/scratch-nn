@@ -3,13 +3,13 @@
 This project implements a neural network from scratch using only NumPy to classify the MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
 
 ## Best Result
-Given 50 epochs and a learning rate of 0.1. More figures are available under [scratch-nn/figs](scratch-nn/figs).
+The 4-layer MLP, given 50 epochs and a learning rate of 0.1. These figures are available under [scratch-nn/figs](scratch-nn/figs/4_layers/).
 
 ### Confusion Matrix
-![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/assets/61603275/5f525885-71fb-4619-8cf3-043619f5b6e1)
+![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/best_50e/ConfusionMatrix.png)
 
 ### Loss Plot GIF
-![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/training_loss.gif)
+![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/training_loss.gif)
 
 *The GIF above shows the training loss over 100 epochs.*
 
@@ -17,7 +17,7 @@ Given 50 epochs and a learning rate of 0.1. More figures are available under [sc
 
 ## Network Architecture
 
-The neural network consists of the following layers:
+The 4-layer MLP consists of the following layers:
 
 - **Input Layer**: 784 neurons (one for each pixel in a 28x28 image, flattened)
 - **First Hidden Layer**: 128 neurons with ReLU activation
