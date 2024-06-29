@@ -1,2 +1,15 @@
 data/MNIST/raw/* filter=lfs diff=lfs merge=lfs -text
-figs/**/* filter=lfs diff=lfs merge=lfs -text
+figs/*_layers/**/* filter=lfs diff=lfs merge=lfs -text
+figs/4_layers filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_50e/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/random-init/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/random-init/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_100e/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_50e/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_50e/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_50e/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/random-init/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_100e/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_100e/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/best_100e/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
+figs/4_layers/random-init/Preds_Val.png filter=lfs diff=lfs merge=lfs -text

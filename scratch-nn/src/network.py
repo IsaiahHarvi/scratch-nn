@@ -1,6 +1,7 @@
 import numpy as np
 from activation_functions import RelU, SoftMax
-from plot_utils import plot_losses_live
+from plot_utils import plot_loss_animation
+
 
 class NeuralNetwork:
     def __init__(self, in_features: int, hidden_layers: list[int], out_features: int) -> None:
@@ -9,15 +10,15 @@ class NeuralNetwork:
         self.hidden_layers = hidden_layers
         self.weights = []
         self.biases = []
-
+        self.id = (len(hidden_layers) + 2)
         self._create_layers()
 
     def predict(self, x) -> tuple[np.ndarray, list[np.ndarray]]:
         return self._forward(x)
 
     def _forward(self, x) -> tuple[np.ndarray, list[np.ndarray]]:
-        layers = [x]
-        for i in range(len(self.weights) - 1):   # exclude output layer
+        layers: list = [x]
+        for i in range(len(self.weights) - 1): # exclude output layer
             layers.append(
                 RelU(np.dot(layers[i], self.weights[i]) + self.biases[i])
             )
@@ -56,32 +57,32 @@ class NeuralNetwork:
         d_output[range(x.shape[0]), y] -= 1 # error term
         d_output /= x.shape[0]
 
-        grad['w' + str(len(self.weights) - 1)] = np.dot(layers[-1].T, d_output)
-        grad['b' + str(len(self.biases) - 1)] = np.sum(d_output, axis=0, keepdims=True)
+        grad[f"w-{len(self.weights)-1}"] = np.dot(layers[-1].T, d_output)
+        grad[f"b-{len(self.weights)-1}"] = np.sum(d_output, axis=0, keepdims=True)
         
         # calculate gradients wrt hidden layers
         for i in range(len(self.weights)-2, -1, -1):
             d_hidden = np.dot(d_output, self.weights[i + 1].T)
             d_hidden[layers[i + 1] <= 0] = 0  # derivative of ReLU
 
-            grad['w' + str(i)] = np.dot(layers[i].T, d_hidden)
-            grad['b' + str(i)] = np.sum(d_hidden, axis=0, keepdims=True)
+            grad[f"w-{i}"] = np.dot(layers[i].T, d_hidden)
+            grad[f"b-{i}"] = np.sum(d_hidden, axis=0, keepdims=True)
 
             d_output = d_hidden
 
         # update weights and biases 
         for i in range(len(self.weights)):
-            self.weights[i] -= lr * grad['w' + str(i)]
-            self.biases[i] -= lr * grad['b' + str(i)]
+            self.weights[i] -= lr * grad[f"w-{i}"]
+            self.biases[i] -= lr * grad[f"b-{i}"]
 
         return loss
 
-    def train(self, x, y, epochs, lr) -> list[float]:
+    def train(self, x: np.ndarray, y: np.ndarray, epochs: int, lr: float) -> list[float]:
         losses = []
         for i in range(epochs):
             loss = self._backpropogation(x, y, lr)
             losses.append(loss)
-            print(f'Epoch {i+1}/{epochs} - Loss: {loss}')
+            print(f'Epoch {i+1}/{epochs} - {loss=:.5f}')
 
-        plot_losses_live(losses)
+        # plot_loss_animation(losses)
         return losses
