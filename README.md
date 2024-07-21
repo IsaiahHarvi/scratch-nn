@@ -15,7 +15,6 @@ The 5-layer MLP is given 20 epochs and a learning rate of 0.01. These figures ar
 ---
 
 ## Network Architecture
-* Architectures are with all related figures as [model_info.txt](scratch-nn/figs/5_layers/20_epochs-0.01_lr/_model_info.txt) * 
 The 5-layer (excluding Activation Functions, of course) MLP consists of the following layers:
 
 - **0 | Linear(784, 392)**: 784 neurons (one for each pixel in a 28x28 image, flattened)
@@ -29,6 +28,7 @@ The 5-layer (excluding Activation Functions, of course) MLP consists of the foll
 - **8 | Linear(32, 10)**
 - **9 | SoftMax**
 
+*Architectures are with all related figures as [model_info.txt](scratch-nn/figs/5_layers/20_epochs-0.01_lr/_model_info.txt)* 
 ### Activation Functions
 
 - **ReLU (Rectified Linear Unit)**: Applied to the hidden layers to introduce non-linearity, allowing the network to learn more complex patterns.
