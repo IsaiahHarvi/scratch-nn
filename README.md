@@ -3,26 +3,31 @@
 This project implements a neural network from scratch using only NumPy to classify the MNIST dataset. The network employs a feedforward architecture with ReLU activation functions in the hidden layers and a Softmax activation function in the output layer. Training is performed using backpropagation and cross-entropy loss.
 
 ## Best Result
-The 4-layer MLP, given 50 epochs and a learning rate of 0.1. These figures are available under [figs](scratch-nn/figs/4_layers/).
+The 5-layer MLP, given 20 epochs and a learning rate of 0.01. These figures are available under [figs](scratch-nn/figs/5_layers/20_epochs-0.01_lr).
 
 ### Confusion Matrix
-![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/best_50e/ConfusionMatrix.png)
+![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/5_layers/20_epochs-0.01_lr/ConfusionMatrix_val.png)
 
 ### Loss Plot GIF
-![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/training_loss.gif)
+![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/5_layers/20_epochs-0.01_lr/training_loss.gif)
 
-*The GIF above shows the training loss over 100 epochs.*
 
 ---
 
 ## Network Architecture
+* Architectures are with all related figures as [model_info.txt](scratch-nn/figs/5_layers/20_epochs-0.01_lr/_model_info.txt) * 
+The 5-layer (excluding Activation Functions of course) MLP consists of the following layers:
 
-The 4-layer MLP consists of the following layers:
-
-- **Input Layer**: 784 neurons (one for each pixel in a 28x28 image, flattened)
-- **First Hidden Layer**: 128 neurons with ReLU activation
-- **Second Hidden Layer**: 64 neurons with ReLU activation
-- **Output Layer**: 10 neurons (one for each digit class 0-9) with Softmax activation
+- **0 | Linear(784, 392)**: 784 neurons (one for each pixel in a 28x28 image, flattened)
+- **1 | RelU**            : Introduces non-linearity
+- **2 | Linear(392, 128)**
+- **3 | RelU**
+- **4 | Linear(128, 64)**
+- **5 | RelU**
+- **6 | Linear(64, 32)**
+- **7 | RelU**
+- **8 | Linear(32, 10)**
+- **9 | SoftMax**
 
 ### Activation Functions
 
@@ -43,6 +48,6 @@ The only library utilized in the construction of the model is NumPy. Other libra
 - `matplotlib`
 - `click` (for command line arguments in `train.py`)
 - `torchvision` (for downloading the MNIST dataset)
-- `torch` (for data loaders in `train.py`)
+- `torch` (for data loaders in `train.py` and data transformations)
 - `scikit-learn` (for confusion matrix plot)
 
