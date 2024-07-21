@@ -6,7 +6,7 @@ This project implements a neural network from scratch using only NumPy to classi
 The 4-layer MLP, given 50 epochs and a learning rate of 0.1. These figures are available under [figs](scratch-nn/figs/4_layers/).
 
 ### Confusion Matrix
-![Confusion Matrix](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/best_50e/ConfusionMatrix.png)
+![Confusion Matrix](scratch-nn/figs/5_layers/20_epochs-0.01_lr/ConfusionMatrix_val.png)
 
 ### Loss Plot GIF
 ![Loss Plot gif](https://github.com/IsaiahHarvi/scratch-nn/blob/main/scratch-nn/figs/4_layers/training_loss.gif)
