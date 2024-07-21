@@ -2,15 +2,12 @@ import numpy as np
 from activation_functions import RelU, SoftMax
 from layers import Linear
 
+
 class NeuralNetwork:
     def __init__(self, sequential: list[Linear | RelU | SoftMax]) -> None:
         self.sequential = sequential
         self.layers = [l for l in sequential if isinstance(l, Linear)]
-        self.weights = []
-        self.biases = []
         self.id = len(self.layers)
-
-        self._create_layers()
 
     def __call__(self, x):
         return self._forward(x)
@@ -22,12 +19,6 @@ class NeuralNetwork:
         for layer in self.sequential:
             x = layer(x)
         return x
-
-    def _create_layers(self) -> None:
-        for layer in self.layers:
-            w, b = layer.wb()
-            self.weights.append(w)
-            self.biases.append(b)
 
     def _cross_entropy(self, y, y_pred) -> float:
         eps = 1e-10 # prevent log(0)

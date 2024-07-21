@@ -11,9 +11,10 @@ from activation_functions import RelU, SoftMax
 
 
 @click.command()
-@click.option('--epochs', default=20)
+@click.option('--epochs', default=10)
 @click.option('--lr', default=0.01)
-def train(epochs, lr):
+@click.option('--gif', default=False)
+def train(epochs, lr, gif: bool):
     train_loader, val_loader = load_data()
     x_train, y_train, x_val, y_val = load_data_np(train_loader, val_loader)
 
@@ -60,8 +61,10 @@ def train(epochs, lr):
     plot_predictions(dir_, y_val, val_pred_cls)
     plot_confusion_matrix(dir_, y_val, val_pred_cls, "val")
     plot_confusion_matrix(dir_, y_train, train_pred_cls, "train")
-    plot_loss_animation(losses)
 
+    if gif: plot_loss_animation(losses)
+
+    print(f"train_acc: {accuracy_score(y_train, train_pred_cls) * 100}")
     print(f"val_acc: {accuracy_score(y_val, val_pred_cls) * 100}")
 
 def load_data() -> tuple[DataLoader, DataLoader]:
