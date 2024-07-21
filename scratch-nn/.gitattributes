@@ -13,3 +13,14 @@ figs/4_layers/best_100e/ConfusionMatrix.png filter=lfs diff=lfs merge=lfs -text
 figs/4_layers/best_100e/Loss.png filter=lfs diff=lfs merge=lfs -text
 figs/4_layers/best_100e/Preds_Train.png filter=lfs diff=lfs merge=lfs -text
 figs/4_layers/random-init/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/training_loss.gif filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/_model_info.txt filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/10_epochs-0.01_lr/ConfusionMatrix_train.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/10_epochs-0.01_lr/ConfusionMatrix_val.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/10_epochs-0.01_lr/_model_info.txt filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/ConfusionMatrix_train.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/ConfusionMatrix_val.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/20_epochs-0.01_lr/Preds_Val.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/10_epochs-0.01_lr/Loss.png filter=lfs diff=lfs merge=lfs -text
+figs/5_layers/10_epochs-0.01_lr/Preds_Val.png filter=lfs diff=lfs merge=lfs -text

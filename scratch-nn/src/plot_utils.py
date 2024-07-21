@@ -14,24 +14,23 @@ def plot_losses(dir_: str, losses: list, epochs: int, lr: float) -> None:
     plt.title(f'{epochs = }, {lr = }')
     plt.savefig(f"{dir_}/Loss.png")
 
-def plot_predictions(dir_: str, y_val, pred_cls, y_train, train_pred_cls) -> None:
-    for y, cls, name in [(y_val, pred_cls, "Val"), (y_train, train_pred_cls, "Train")]:
-        plt.figure(figsize=(10, 5))
-        plt.scatter(range(len(y[:100])), y[:100], label='True Labels')
-        plt.scatter(range(len(cls[:100])), cls[:100], label='Predicted Labels', marker='x')
-        plt.xlabel('Sample Index')
-        plt.ylabel('Class')
-        plt.title(f'True vs Predicted Labels ({name})')
-        plt.legend()
-        plt.savefig(f"{dir_}/Preds_{name}.png")
+def plot_predictions(dir_: str, y_val, pred_cls) -> None:
+    plt.figure(figsize=(10, 5))
+    plt.scatter(range(len(y_val[:100])), y_val[:100], label='True Labels')
+    plt.scatter(range(len(pred_cls[:100])), pred_cls[:100], label='Predicted Labels', marker='x')
+    plt.xlabel('Sample Index')
+    plt.ylabel('Class')
+    plt.title(f'True vs Predicted Labels (Validation Split)')
+    plt.legend()
+    plt.savefig(f"{dir_}/Preds_Val.png")
 
-def plot_confusion_matrix(dir_: str, y_val: np.ndarray, pred_cls: np.ndarray) -> None:
-    cm = confusion_matrix(y_val, pred_cls)
+def plot_confusion_matrix(dir_: str, y: np.ndarray, pred_cls: np.ndarray, suffix: str) -> None:
+    cm = confusion_matrix(y, pred_cls)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=range(10))    
     plt.figure(figsize=(10, 10))
     disp.plot(cmap=plt.cm.Blues, values_format='d')
-    plt.title(f'Confusion Matrix (Accuracy: {accuracy_score(y_val, pred_cls) * 100:.2f}%)')
-    plt.savefig(f"{dir_}/ConfusionMatrix.png")
+    plt.title(f'Confusion Matrix (Accuracy: {accuracy_score(y, pred_cls) * 100:.2f}%)')
+    plt.savefig(f"{dir_}/ConfusionMatrix_{suffix}.png")
 
 def plot_loss_animation(losses: list[float]) -> None:
     fig, ax = plt.subplots()
