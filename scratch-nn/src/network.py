@@ -38,7 +38,7 @@ class NeuralNetwork:
         for i in range(len(self.sequential) - 1, -1, -1):
             layer = self.sequential[i]
             if isinstance(layer, RelU):
-                grad = grad * layer.derivative(self.sequential[i-1].z)
+                grad *= layer.derivative(self.sequential[i-1].z)
             elif isinstance(layer, Linear):
                 grad = layer.backpropogate(grad, lr)
 
